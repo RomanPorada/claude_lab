@@ -4,7 +4,7 @@
 Реєстрація, авторизація (JWT), каталог і замовлення зберігаються в PostgreSQL (раніше — JSON-файл і localStorage).
 Один контейнер віддає і фронтенд, і REST API.
 
-**Публічна адреса:** `http://<вставте output public_url>`  
+**Публічна адреса:** `http://atomsapi-2omkx.swedencentral.cloudapp.azure.com`  
 **Swagger UI:** `/docs` · **Health:** `/health`
 
 Публічні: `/atoms`, `/molecules`, `/auth/register`, `/auth/login`. З `Authorization: Bearer <JWT>`: `/auth/me`, `/orders`.
