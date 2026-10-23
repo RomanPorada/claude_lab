@@ -1,0 +1,144 @@
+.success-page {
+  padding: 20px;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-content {
+  background: #fff;
+  border: 1px solid #e6e9ef;
+  border-radius: 8px;
+  padding: 40px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 64px;
+  color: #22c55e;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.success-content h1 {
+  color: #22c55e;
+  margin: 0 0 8px 0;
+}
+
+.success-msg {
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.order-details {
+  text-align: left;
+  background: #f8fafc;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 24px 0;
+}
+
+.order-details h3 {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.detail-section {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.detail-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.detail-section p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.order-items {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-total {
+  text-align: center;
+  padding-top: 8px;
+  font-weight: 600;
+}
+
+.order-date {
+  font-size: 12px;
+  color: #999;
+}
+
+.success-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-home,
+.btn-catalog {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-home {
+  background: var(--primary, #2563eb);
+  color: white;
+}
+
+.btn-home:hover {
+  opacity: 0.9;
+}
+
+.btn-catalog {
+  background: #e5e7eb;
+  color: #333;
+}
+
+.btn-catalog:hover {
+  background: #d1d5db;
+}
+
+@media (max-width: 600px) {
+  .success-content {
+    padding: 20px;
+  }
+
+  .order-details {
+    padding: 16px;
+  }
+}

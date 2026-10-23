@@ -1,0 +1,24 @@
+.form-errors {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.form-errors h4 {
+  margin: 0 0 8px 0;
+  color: #7f1d1d;
+  font-size: 14px;
+}
+
+.form-errors ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #7f1d1d;
+}
+
+.form-errors li {
+  font-size: 13px;
+  margin: 4px 0;
+}

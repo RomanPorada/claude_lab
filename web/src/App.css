@@ -1,0 +1,26 @@
+:root{
+  --primary:#1f4ce0;
+  --muted:#6b7280;
+  --bg:#f4f6fb;
+  --card:#ffffff;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Arial}
+body{background:var(--bg);color:#111}
+.header-space{height:76px}
+
+/* main layout */
+.main{max-width:1200px;margin:22px auto;padding:0 16px;min-height:60vh}
+
+/* utility */
+.container{max-width:1100px;margin:0 auto;padding:0 12px}
+.row{display:flex;gap:20px}
+.col{flex:1}
+.center{text-align:center}
+
+/* responsive */
+@media (max-width: 900px){
+  .row{flex-direction:column}
+}
+    

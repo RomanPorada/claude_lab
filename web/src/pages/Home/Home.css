@@ -1,0 +1,10 @@
+.home-page .tabs{display:flex;gap:8px;margin-bottom:8px}
+.tab{background:#fff;padding:8px 12px;border-radius:8px;border:1px solid #e6e9ef;cursor:pointer}
+.tab.active{background:var(--primary);color:white}
+.search-row{margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+@media(max-width:900px){
+  .home-page{padding:12px}
+  .home-page .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+}
+    

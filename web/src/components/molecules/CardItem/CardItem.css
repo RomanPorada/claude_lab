@@ -1,0 +1,7 @@
+.card-item{background:var(--card);border-radius:10px;padding:14px;box-shadow:0 6px 18px rgba(2,6,23,0.06);text-align:center}
+.card-item img{width:120px;height:120px;object-fit:contain;margin:6px auto}
+.card-body h3{margin:8px 0}
+.muted{color:var(--muted);font-size:14px;margin-bottom:8px}
+.more{display:inline-block;padding:8px 12px;background:var(--primary);color:white;border-radius:8px;text-decoration:none}
+.more:hover{opacity:.95}
+    

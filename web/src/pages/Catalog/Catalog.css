@@ -1,0 +1,4 @@
+.catalog-page .tabs{display:flex;gap:8px;margin-bottom:8px}
+.tab{background:#fff;padding:8px 12px;border-radius:8px;border:1px solid #e6e9ef;cursor:pointer}
+.tab.active{background:var(--primary);color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}

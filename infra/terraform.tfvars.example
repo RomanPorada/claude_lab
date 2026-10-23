@@ -1,0 +1,4 @@
+subscription_id = "00000000-0000-0000-0000-000000000000"
+github_repo     = "RomanPorada/claude_lab"
+alert_email     = "you@example.com"
+# location = "polandcentral"   # змініть, якщо регіон заборонений політикою вашої підписки

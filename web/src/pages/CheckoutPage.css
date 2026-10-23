@@ -1,0 +1,141 @@
+.checkout-page {
+  padding: 20px;
+}
+
+.checkout-content {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.checkout-form {
+  background: #fff;
+  border: 1px solid #e6e9ef;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.checkout-form h3 {
+  margin: 0 0 16px 0;
+}
+
+.fill-data-btn {
+  width: 100%;
+  padding: 10px;
+  background: #f0f4f8;
+  border: 2px solid var(--primary, #2563eb);
+  color: var(--primary, #2563eb);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.fill-data-btn:hover {
+  background: var(--primary, #2563eb);
+  color: white;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #dc2626;
+}
+
+.field-error {
+  display: block;
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+.checkout-summary {
+  background: #f8fafc;
+  border: 1px solid #e6e9ef;
+  border-radius: 8px;
+  padding: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.checkout-summary h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+}
+
+.summary-items {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 13px;
+}
+
+.summary-total {
+  padding-top: 12px;
+  border-top: 2px solid #ddd;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .checkout-content {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-summary {
+    position: relative;
+    top: auto;
+  }
+}

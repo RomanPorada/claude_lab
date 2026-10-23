@@ -1,0 +1,8 @@
+.filters{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+.filters-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.reset{background:transparent;border:1px solid #ddd;padding:6px 8px;border-radius:8px;cursor:pointer}
+.filter-block{margin-bottom:12px}
+.filter-title{font-weight:700;margin-bottom:8px}
+.check{display:flex;align-items:center;gap:8px;margin-bottom:6px;cursor:pointer}
+.range-row{display:flex;gap:8px}
+.range-row input{width:100%;padding:6px;border:1px solid #ddd;border-radius:6px}
