@@ -1,5 +1,6 @@
 const express = require("express");
 const { pool } = require("../db");
+const { cached, queryKey } = require("../cache");
 const router = express.Router();
 
 const toApi = (r) => ({
@@ -12,30 +13,36 @@ const toApi = (r) => ({
   image: r.image,
 });
 
+async function loadMolecules(query) {
+  const { phases, molarMin, molarMax, q } = query;
+  const where = [];
+  const params = [];
+  if (phases) {
+    params.push(phases.split(",").map((s) => s.trim()));
+    where.push(`phase = ANY($${params.length})`);
+  }
+  if (molarMin && !Number.isNaN(parseFloat(molarMin))) {
+    params.push(parseFloat(molarMin));
+    where.push(`molar_mass >= $${params.length}`);
+  }
+  if (molarMax && !Number.isNaN(parseFloat(molarMax))) {
+    params.push(parseFloat(molarMax));
+    where.push(`molar_mass <= $${params.length}`);
+  }
+  if (q) {
+    params.push(`%${q}%`);
+    where.push(`(name ILIKE $${params.length} OR formula ILIKE $${params.length})`);
+  }
+  const sql = `SELECT * FROM molecules ${where.length ? "WHERE " + where.join(" AND ") : ""} ORDER BY molar_mass`;
+  const { rows } = await pool.query(sql, params);
+  return rows.map(toApi);
+}
+
 router.get("/", async (req, res, next) => {
   try {
-    const { phases, molarMin, molarMax, q } = req.query;
-    const where = [];
-    const params = [];
-    if (phases) {
-      params.push(phases.split(",").map((s) => s.trim()));
-      where.push(`phase = ANY($${params.length})`);
-    }
-    if (molarMin && !Number.isNaN(parseFloat(molarMin))) {
-      params.push(parseFloat(molarMin));
-      where.push(`molar_mass >= $${params.length}`);
-    }
-    if (molarMax && !Number.isNaN(parseFloat(molarMax))) {
-      params.push(parseFloat(molarMax));
-      where.push(`molar_mass <= $${params.length}`);
-    }
-    if (q) {
-      params.push(`%${q}%`);
-      where.push(`(name ILIKE $${params.length} OR formula ILIKE $${params.length})`);
-    }
-    const sql = `SELECT * FROM molecules ${where.length ? "WHERE " + where.join(" AND ") : ""} ORDER BY molar_mass`;
-    const { rows } = await pool.query(sql, params);
-    res.json({ data: rows.map(toApi) });
+    const { value, source } = await cached(queryKey("molecules:list", req.query), () => loadMolecules(req.query));
+    res.set("X-Cache", source);
+    res.json({ data: value });
   } catch (e) {
     next(e);
   }

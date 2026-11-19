@@ -1,10 +1,10 @@
 name: deploy
 on:
   push:
-    branches: [lab1]
+    branches: [lab1, lab2]
 
 permissions:
-  id-token: write   # потрібно для OIDC
+  id-token: write   
   contents: read
 
 env:

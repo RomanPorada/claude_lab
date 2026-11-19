@@ -1,6 +1,8 @@
 **/node_modules
 web/build
 infra
+loadtest
+docs
 .git
 .github
 .env

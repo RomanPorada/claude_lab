@@ -1,8 +1,8 @@
 const express = require("express");
 const { pool } = require("../db");
+const { cached, queryKey } = require("../cache");
 const router = express.Router();
 
-// Повертає той самий JSON-формат, що й старий сервер (camelCase, числа як number)
 const toApi = (r) => ({
   id: r.id,
   name: r.name,
@@ -16,30 +16,36 @@ const toApi = (r) => ({
   image: r.image,
 });
 
+async function loadAtoms(query) {
+  const { types, massMin, massMax, q } = query;
+  const where = [];
+  const params = [];
+  if (types) {
+    params.push(types.split(",").map((s) => s.trim()));
+    where.push(`atom_type = ANY($${params.length})`);
+  }
+  if (massMin && !Number.isNaN(parseFloat(massMin))) {
+    params.push(parseFloat(massMin));
+    where.push(`mass >= $${params.length}`);
+  }
+  if (massMax && !Number.isNaN(parseFloat(massMax))) {
+    params.push(parseFloat(massMax));
+    where.push(`mass <= $${params.length}`);
+  }
+  if (q) {
+    params.push(`%${q}%`);
+    where.push(`(name ILIKE $${params.length} OR symbol ILIKE $${params.length})`);
+  }
+  const sql = `SELECT * FROM atoms ${where.length ? "WHERE " + where.join(" AND ") : ""} ORDER BY mass`;
+  const { rows } = await pool.query(sql, params);
+  return rows.map(toApi);
+}
+
 router.get("/", async (req, res, next) => {
   try {
-    const { types, massMin, massMax, q } = req.query;
-    const where = [];
-    const params = [];
-    if (types) {
-      params.push(types.split(",").map((s) => s.trim()));
-      where.push(`atom_type = ANY($${params.length})`);
-    }
-    if (massMin && !Number.isNaN(parseFloat(massMin))) {
-      params.push(parseFloat(massMin));
-      where.push(`mass >= $${params.length}`);
-    }
-    if (massMax && !Number.isNaN(parseFloat(massMax))) {
-      params.push(parseFloat(massMax));
-      where.push(`mass <= $${params.length}`);
-    }
-    if (q) {
-      params.push(`%${q}%`);
-      where.push(`(name ILIKE $${params.length} OR symbol ILIKE $${params.length})`);
-    }
-    const sql = `SELECT * FROM atoms ${where.length ? "WHERE " + where.join(" AND ") : ""} ORDER BY mass`;
-    const { rows } = await pool.query(sql, params);
-    res.json({ data: rows.map(toApi) });
+    const { value, source } = await cached(queryKey("atoms:list", req.query), () => loadAtoms(req.query));
+    res.set("X-Cache", source);
+    res.json({ data: value });
   } catch (e) {
     next(e);
   }

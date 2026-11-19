@@ -11,7 +11,7 @@ const pool = new Pool({
   database: process.env.DB_NAME || "atoms",
   // Azure Database for PostgreSQL вимагає TLS
   ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false,
-  max: 10,
+  max: Number(process.env.DB_POOL_MAX || 10),
 });
 
 async function init() {
