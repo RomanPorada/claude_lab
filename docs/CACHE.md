@@ -15,6 +15,6 @@ Cache-aside для GET /atoms, GET /molecules (TTL 45 с ±10%) і GET /orders (
 ## Актуальність даних
 Каталог змінюється рідко: клієнт може бачити застарілі дані до <45 с ±10%>. Список замовлень інвалідується одразу після запису, тому для автора застарілість <≈ 0>. Як зменшити: <менший TTL, інвалідація при кожній зміні, write-through>; ціна: <більше звернень до БД>.
 
-![Графік CPU percent для PostgreSQL](image-1.png)
+![Графік CPU percent для PostgreSQL](image-3.png)
 
 ![Графік Active connections для PostgreSQL](image-2.png)
